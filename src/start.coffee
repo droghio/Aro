@@ -9,5 +9,9 @@
 class Test
 	constructor: (@name)->
 
-	name: () ->
+	showName: () ->
 		console.log("My name is " + @name + ".")
+
+
+jimmy = new Test("Jimmy")
+jimmy.showName()
