@@ -23,6 +23,6 @@
   },
   "dependencies": {
     "mongoose": "^3.8.17",
-    "sandbox": "^0.8.6"
+    "sandbox": "^0.8.6",
   }
 }
