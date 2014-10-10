@@ -9,6 +9,7 @@
 //For now we test.
 
 fs =require("fs")
+server = require("./src/server.js")
 
 db = require("./src/db.js")
 db.open(letsGo)

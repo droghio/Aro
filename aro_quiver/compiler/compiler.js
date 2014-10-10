@@ -64,7 +64,7 @@ module.exports = {
                 return callback(pg);
             })
         })
-    }
+    },
 
 
     getPage: function (name, callback){
