@@ -12,6 +12,10 @@
 
 var page = {
     name: { type: String, unique: true },
+    data: {
+        swap: []
+    },
+    compiled: String,
     rawstring: String
 }
 
@@ -43,13 +47,25 @@ module.exports = {
 
 
     newPage: function (name, htmlstring, callback){
-        page = new pageCollection({ name: name, rawstring: htmlstring })
+        page = new pageCollection({ name: name, rawstring: htmlstring, compiled: "" })
         page.save(function(err, pg){
             if (err){
                 console.log("There was an error saving page: " + err)
             }
 
-            return callback(pg);
+            if (page){
+                page.compile = function(callback){
+                    page.markModified("data");
+                    page.save();
+                    module.exports.compilePage(page.name, function(pg){
+                        page = pg;
+                        callback(pg);
+                    });
+                }
+            }
+
+            if (callback)
+                return callback(pg);
         })
     },
 
@@ -61,7 +77,8 @@ module.exports = {
                     console.log("There was an error saving page: " + err)
                 }
 
-                return callback(pg);
+                if (callback)
+                    return callback(pg);
             })
         })
     },
@@ -71,21 +88,33 @@ module.exports = {
         pageCollection.findOne({ name: name }, function(err, page){
             if (err)
                 console.log("ERRRRORRR gettng page: " + name)
+
+            if (page){
+                page.compile = function(callback){
+                    page.markModified("data");
+                    page.save();
+                    module.exports.compilePage(page.name, function(pg){
+                        page = pg;
+                        callback(pg);
+                    });
+                }
+            }
             
-            return callback(page)
+            if (callback)
+                return callback(page)
         })
     },
 
 
     compilePage: function (name, callback){
-        module.exports.getPage(name, function(err, page){
+        module.exports.getPage(name, function(page){
             if (page){
-                page.complied = page.raw.replace
+                page.compiled = page.rawstring
                 for (var replace in page.data.swap){
                     //Adds data into template.
                     //Remember build system is static.
                     //All data should be stored in the page.
-                    page.complied.replace(replace, data.swap[replace])
+                    page.compiled = page.compiled.replace(page.data.swap[replace].key, page.data.swap[replace].value)
                 }
                 
                 //Now let's launch to spooky and use all that angular.

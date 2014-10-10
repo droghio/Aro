@@ -8,7 +8,7 @@
 //Will create build ui on first run
 //For now we test.
 
-fs =require("fs")
+fs = require("fs")
 server = require("./src/server.js")
 
 db = require("./src/db.js")
