@@ -21,7 +21,7 @@ plugins = {}
 
 
 function letsGo(){
-    //Api loading magic.
+    //Api loading magic. //HarrHarr
     
     fs.readdir("./aro_quiver", function(err, ls){
         for (var dir in ls){
@@ -92,3 +92,5 @@ function dbTest(callback){
         })
     })
 }
+
+console.log("Notching...");
