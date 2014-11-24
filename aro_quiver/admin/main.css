@@ -1,0 +1,64 @@
+﻿body{
+    background: no-repeat linear-gradient(225deg, #bbfdff, #2f307c);
+    background-size: 100vw 100vh;
+    background-attachment: fixed;
+    margin: 0px;
+}
+
+header{
+    overflow: auto;
+}
+
+aside{
+    max-height: 60px;
+    overflow-y: hidden;
+    width: 50px;
+    float: left;
+    position: relative;
+    transition: all 1s .5s;
+}
+
+aside:hover{
+    max-height: 100vh;
+    width: 70px;
+    transition: all 1s;
+}
+
+nav{
+    background-color: rgba(47, 48, 124, 0.86);
+    height: calc( 100vh - 10px );
+    padding: 5px 10px;
+    display: block;
+}
+
+nav > ul{
+    margin: 0px;
+    padding: 0px;
+}
+
+nav > ul > li{
+    padding-top: 100%;
+    width: 100%;
+    background-size: cover;
+    text-decoration: none;
+    list-style: none;
+    margin: 15px 0px;
+    transition: all .5s;
+}
+
+nav > ul > li:hover{
+    opacity: .5;
+}
+
+
+#logo{
+    font-family: Arial;
+    font-size: 50px;
+    width: auto;
+    color: white;
+    float: right;
+    margin-right: 20px;
+}
+#logo > a{
+    color: #2f307c;
+}
