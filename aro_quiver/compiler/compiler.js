@@ -4,11 +4,10 @@
 //September 19, 2014
 //
 
-//Node file to load plug-ins and aro framework.
-//Will create build ui on first run
-//For now we test.
-
-//db object is passed
+//
+// Plugin to make and serve templates.
+// TODO: Don't use express to serve in a production environment, but for now it'll do.
+//
 
 var page = {
     name: { type: String, unique: true },

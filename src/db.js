@@ -4,6 +4,8 @@
 
     Aro Mongo interface
 	
+    Exposes bindings for other apis to access database.
+    You need to register collections and models before database can be accessed.
 */
 
 mongoose = require('mongoose');

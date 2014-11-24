@@ -37,7 +37,6 @@ function letsGo(){
                 //TODO Add error check.
                 try{
                     plugins[dir] = require("./aro_quiver/" + dir + "/" + dir + ".js")
-                    //plugins[dir] = require(dir + "./index.js")
 
                     //Try loading the plugin.
                     plugins[dir].load()
