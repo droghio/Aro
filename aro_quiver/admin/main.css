@@ -1,7 +1,13 @@
-﻿body{
+﻿@font-face{
+    font-family: Genosans;
+    src: url("../fonts/GeosansLight.ttf");
+}
+
+body{
     background: no-repeat linear-gradient(225deg, #bbfdff, #2f307c);
     background-size: 100vw 100vh;
     background-attachment: fixed;
+    font-family: Genosans;
     margin: 0px;
 }
 
@@ -23,6 +29,11 @@ aside:hover{
     width: 70px;
     transition: all 1s;
 }
+
+
+/* 
+    --Header And Logo --
+*/
 
 nav{
     background-color: rgba(47, 48, 124, 0.86);
@@ -52,7 +63,7 @@ nav > ul > li:hover{
 
 
 #logo{
-    font-family: Arial;
+    font-family: Genosans;
     font-size: 50px;
     width: auto;
     color: white;
@@ -61,4 +72,20 @@ nav > ul > li:hover{
 }
 #logo > a{
     color: #2f307c;
+}
+
+
+/*
+    --iFrame--
+*/
+
+iframe{
+    margin: 0px 10%;
+    position: absolute;
+    bottom: 0px;
+    height: calc( 100% - 80px );
+    width: 80%;
+    border: none;
+    background: #FFF;
+    overflow: scroll;
 }

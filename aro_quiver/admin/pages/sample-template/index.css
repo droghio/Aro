@@ -1,12 +1,21 @@
-﻿body {
-    font-family: Arial;
-    margin: 0px;
+﻿@font-face{
+    font-family: Geosans;
+    src: url("../../fonts/GeosansLight.ttf")
 }
 
-content{
-    overflow: auto;
-    width: 100%;
+body {
+    font-family: Geosans;
+    margin: 0px;
+    min-width: 800px;
 }
+
+content::after{
+   content: " ";
+   display: block; 
+   height: 0; 
+   clear: both;
+}
+
 
 aside{
     float: left;
@@ -29,6 +38,13 @@ li{
     list-style-type: none;
     color: white;
     padding: 5px 0px;
+    cursor: pointer;
+    transition: all .5s;
+}
+
+li:hover{
+    margin-left: 5px;
+    color: #DDD;
 }
 
 li::before{
@@ -36,9 +52,12 @@ li::before{
 }
 
 main{
-    float: right;
+    float: left;
     width: calc( 100% - 150px );
+    max-width: 800px;
+    height: inherit;
     padding: 10px 0px;
+    background: #FFF;
 }
 
 main > header{
@@ -67,16 +86,19 @@ figure{
 
 .social{
     min-width: 100px;
+    height: auto;
     width: auto;
     padding: 0px 20px;
+    background: none;
 }
 
 section{
-    padding: 0px 10px 10px;
+    padding: 0px 15px 10px;
 }
 
 article > h2{
     margin-bottom: 0px;
+    color: #0094ff;
 }
 
 article > p{

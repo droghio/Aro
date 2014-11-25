@@ -6,6 +6,7 @@
         <title>Aro Editor</title>
 
         <link href="../main.css" rel="stylesheet" />
+        <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
         <script src="index.js"></script>
 
     </head>
@@ -32,7 +33,18 @@
         </header>
 
 
-        <main></main> <!-- Rendered view of webpage goes in here. iFrame? -->
+        <main>
+            <iframe src="sample-template/index.html"></iframe>
+        </main> <!-- Rendered view of webpage goes in here. iFrame? -->
+
+        <script>
+
+            //Load iframe, adjust size.
+
+            $("iframe").width($("iframe").scrollWidth())
+
+        </script>
+
     </body>
 
 </html>
