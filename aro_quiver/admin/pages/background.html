@@ -1,0 +1,50 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta charset="utf-8" />
+        <title>Aro Editor</title>
+
+        <link href="../main.css" rel="stylesheet" />
+        <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+        <script src="index.js"></script>
+
+    </head>
+
+    <body>
+        <header>
+            <aside id="toolbar">
+                <nav>
+                    <ul>
+                        <li style="background-image: url('../icons/sidebar/edit.png')"></li>
+                        <li style="background-image: url('../icons/sidebar/home.png')"></li>
+                        <li style="background-image: url('../icons/sidebar/pages.png')"></li>
+                        <li style="background-image: url('../icons/sidebar/add.png')"></li>
+                        <li style="background-image: url('../icons/sidebar/media.png')"></li>
+                        <li style="background-image: url('../icons/sidebar/permissions.png')"></li>
+                        <li style="background-image: url('../icons/sidebar/users.png')"></li>
+                        <li style="background-image: url('../icons/sidebar/settings.png')"></li>
+                        <li style="background-image: url('../icons/sidebar/help.png')"></li>
+                    </ul>
+                </nav>
+            </aside>
+
+            <aside id="logo"><a>a</a>ro</aside>
+        </header>
+
+
+        <main>
+            <iframe src="sample-template/index.html"></iframe>
+        </main> <!-- Rendered view of webpage goes in here. iFrame? -->
+
+        <script>
+
+            //Load iframe, adjust size.
+
+            $("iframe").width($("iframe").scrollWidth())
+
+        </script>
+
+    </body>
+
+</html>

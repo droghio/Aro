@@ -1,0 +1,106 @@
+﻿@font-face{
+    font-family: Geosans;
+    src: url("../../fonts/GeosansLight.ttf")
+}
+
+body {
+    font-family: Geosans;
+    margin: 0px;
+    min-width: 800px;
+}
+
+content::after{
+   content: " ";
+   display: block; 
+   height: 0; 
+   clear: both;
+}
+
+
+aside{
+    float: left;
+    height: 100vh;
+    background: #0094ff;
+    min-width: 150px;
+}
+
+.right{ float: right; }
+.left{ float: left; }
+
+
+ul{
+    margin: 10px 0px 0px;
+    padding: 0px 15px;
+    font-size: 1.2em;
+}
+
+li{
+    list-style-type: none;
+    color: white;
+    padding: 5px 0px;
+    cursor: pointer;
+    transition: all .5s;
+}
+
+li:hover{
+    margin-left: 5px;
+    color: #DDD;
+}
+
+li::before{
+    content: "> ";
+}
+
+main{
+    float: left;
+    width: calc( 100% - 150px );
+    max-width: 800px;
+    height: inherit;
+    padding: 10px 0px;
+    background: #FFF;
+}
+
+main > header{
+    overflow: auto;
+    position: relative;
+}
+
+main h1{
+    font-size: 2em;
+    margin: 0px 10px;
+}
+
+main > header > .details{
+    float: right;
+    margin: 0px 10px 10px;
+}
+
+figure{
+    background: black;
+    min-height: 300px;
+    max-width: 1000px;
+    width: 100%;
+    margin: 0px;
+    padding: 0px;
+}
+
+.social{
+    min-width: 100px;
+    height: auto;
+    width: auto;
+    padding: 0px 20px;
+    background: none;
+}
+
+section{
+    padding: 0px 15px 10px;
+}
+
+article > h2{
+    margin-bottom: 0px;
+    color: #0094ff;
+}
+
+article > p{
+    margin: 15px 20px 0px;
+}
