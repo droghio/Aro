@@ -29,6 +29,14 @@
                 </nav>
             </aside>
 
+            <aside class="actions">
+                <ul>
+                    <li style="background-image: url('../icons/pages/refresh.png')"></li>
+                    <li style="background-image: url('../icons/pages/upload.png')"></li>
+                    <li style="background-image: url('../icons/pages/delete.png')"></li>
+                </ul>
+            </aside>
+
             <aside id="logo"><a>a</a>ro</aside>
         </header>
 
@@ -37,6 +45,12 @@
             <iframe src="sample-template/index.html" class="hidden"></iframe>
         </main> <!-- Rendered view of webpage goes in here. iFrame? -->
 
+        <div class="modal hide">
+            <form action="javascript:replacer.finishReplace()">
+                <input type="text" id="replaceText" />
+            </form>
+        </div>
+
         <script>
 
             //Load iframe, adjust size.
@@ -44,7 +58,7 @@
             $("iframe").load(function () {
 
                 $("iframe").contents().find("*").click(function (e) {
-                    console.log(e)
+                    replacer.startReplace(e.target);
                     e.preventDefault()
                 })
 

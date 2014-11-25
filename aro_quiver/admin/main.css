@@ -26,12 +26,22 @@ aside{
     transition: all 1s .5s;
 }
 
-aside:hover{
-    max-height: 100vh;
-    width: 70px;
-    transition: all 1s;
+ul{
+    margin: 0px;
+    padding: 0px;
 }
 
+li{
+    background-size: cover;
+    text-decoration: none;
+    list-style: none;
+    transition: all .5s;
+    cursor: pointer;
+}
+
+ li:hover{
+    opacity: .5;
+}
 
 /* 
     --Header And Logo --
@@ -49,25 +59,52 @@ nav{
     display: block;
 }
 
-nav > ul{
-    margin: 0px;
-    padding: 0px;
-}
-
 nav > ul > li{
     padding-top: 100%;
-    width: 100%;
-    background-size: cover;
-    text-decoration: none;
-    list-style: none;
     margin: 15px 0px;
-    transition: all .5s;
-    cursor: pointer;
+    width: 100%;
 }
 
-nav > ul > li:hover{
-    opacity: .5;
+#toolbar:hover{
+    max-height: 100vh;
+    width: 70px;
+    transition: all 1s;
 }
+
+#toolbar:hover+.actions{
+    padding-left: 70px;
+    transition: all 1s;
+}
+
+#toolbar > nav > ul > li:first-of-type{
+    width: 30px;
+    padding-top: 30px;
+    margin: 15px auto;
+}
+
+
+
+.actions{
+    position: absolute;
+    left: 0px;
+    z-index: -1;
+    height: 60px;
+    width: auto;
+    background-color: rgba(47, 48, 124, 0.86);
+    padding-left: 50px;
+}
+
+.actions > ul {
+    height: 30px;
+}
+
+.actions > ul > li{
+    height: inherit;
+    margin: 22px 10px;
+    width: 30px;
+    float: left;
+}
+
 
 
 #logo{
@@ -88,7 +125,7 @@ nav > ul > li:hover{
 */
 
 .hide{
-    max-height: 0px;
+    max-height: 0px !important;
 }
 
 main{
@@ -97,10 +134,10 @@ main{
 }
 
 iframe{
-    margin: 100px 10% -5px;
+    margin: 100px 7.5% -5px;
     padding: 0px;
     min-height: calc( 100vh - 100px );
-    width: 80%;
+    width: 85%;
     border: none;
     background: #FFF;
     transition: all 1s;
@@ -108,4 +145,33 @@ iframe{
 
 .hidden{
     transform: translateY(100vh)
+}
+
+
+
+
+/*
+    --Modal Replacement--
+*/
+
+.modal{
+    height: 100vh;
+    width: 100vw;
+    max-height: 100vh;
+    position: fixed;
+    top: 0px;
+    background: rgba(128, 128, 128, 0.49);
+    overflow: hidden;
+    transition: all 1s;
+}
+
+#replaceText{
+    height: 50px;
+    width: 30vw;
+    margin-top: calc( 30% - 25px );
+    margin-left: 35vw;
+    border-radius: 25px;
+    font-size: 30px;
+    border: 1px solid #DDD;
+    padding: 0px 30px;
 }
