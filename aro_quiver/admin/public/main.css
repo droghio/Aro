@@ -134,7 +134,7 @@ main{
     overflow: hidden;
 }
 
-iframe{
+iframe#editor{
     margin: 100px 7.5% -5px;
     padding: 0px;
     min-height: calc( 100vh - 100px );
@@ -201,4 +201,13 @@ iframe{
 
 .homeButton:hover {
     opacity: 0.5;
+}
+
+
+/*
+    --Long Editor--
+*/
+
+form > .mce-container{
+    margin: 50px auto !important;
 }

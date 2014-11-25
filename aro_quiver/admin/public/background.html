@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
     <head>
@@ -8,6 +8,9 @@
         <link href="main.css" rel="stylesheet" />
         <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
         <script src="/socket.io/socket.io.js"></script>
+
+        <!-- Place inside the <head> of your HTML -->
+        <script src="//tinymce.cachefly.net/4.0/tinymce.min.js"></script>
 
         <script src="clientadmin.js"></script>
 
@@ -44,12 +47,13 @@
 
 
         <main class="hide">
-            <iframe class="hidden"></iframe>
+            <iframe id="editor" class="hidden"></iframe>
         </main> <!-- Rendered view of webpage goes in here. iFrame? -->
 
         <div class="modal hide">
             <form action="javascript:replacer.finishReplace()">
                 <input type="text" id="replaceText" />
+                <textarea id="replaceTextLong"></textarea>
             </form>
         </div>
 
