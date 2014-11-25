@@ -10,7 +10,7 @@
 //
 
 var page = {
-    name: { type: String, unique: true },
+    url: { type: String, unique: true },
     data: {
         swap: []
     },
@@ -42,11 +42,24 @@ module.exports = {
 
             })
         })
+        
+        // Serve our actual site.
+        server.addDir("compiler/templates/sample-template", "pages")
+        
     },
 
 
-    newPage: function (name, htmlstring, callback){
-        page = new pageCollection({ name: name, rawstring: htmlstring, compiled: "" })
+
+
+
+
+    //
+    // Page management.
+    //
+    //
+
+    newPage: function (url, htmlstring, callback){
+        page = new pageCollection({ url: url, rawstring: htmlstring, compiled: "" })
         page.save(function(err, pg){
             if (err){
                 console.log("There was an error saving page: " + err)
@@ -56,7 +69,7 @@ module.exports = {
                 page.compile = function(callback){
                     page.markModified("data");
                     page.save();
-                    module.exports.compilePage(page.name, function(pg){
+                    module.exports.compilePage(page.url, function(pg){
                         page = pg;
                         callback(pg);
                     });
@@ -69,8 +82,8 @@ module.exports = {
     },
 
     
-    updatePageRaw: function(name, htmlstring, callback){
-        page = getPage(name, function(page){
+    updatePageRaw: function(url, htmlstring, callback){
+        page = getPage(url, function(page){
             page.save(function(err, pg){
                 if (err){
                     console.log("There was an error saving page: " + err)
@@ -83,16 +96,16 @@ module.exports = {
     },
 
 
-    getPage: function (name, callback){
-        pageCollection.findOne({ name: name }, function(err, page){
+    getPage: function (url, callback){
+        pageCollection.findOne({ url: url }, function(err, page){
             if (err)
-                console.log("ERRRRORRR gettng page: " + name)
+                console.log("ERRRRORRR getting page: " + url)
 
             if (page){
                 page.compile = function(callback){
                     page.markModified("data");
                     page.save();
-                    module.exports.compilePage(page.name, function(pg){
+                    module.exports.compilePage(page.url, function(pg){
                         page = pg;
                         callback(pg);
                     });
@@ -103,30 +116,50 @@ module.exports = {
                 return callback(page)
         })
     },
+    
+    getAllPages: function (callback){
+        //TODO REMOVE THIS LIMIT!!!!!
+        pageCollection.find(function(err, pages){
+            if (err)
+                console.log("ERRRRORRR getting page: " + url)
+            
+            if (callback)
+                return callback(pages)
+        })
+    },
 
 
-    compilePage: function (name, callback){
-        module.exports.getPage(name, function(page){
+    compilePage: function (url, callback, compiledString){
+        //Since I moved compilation to client this function is really been voided.
+    
+        module.exports.getPage(url, function(page){
             if (page){
-                page.compiled = page.rawstring
-                for (var replace in page.data.swap){
-                    //Adds data into template.
-                    //Remember build system is static.
-                    //All data should be stored in the page.
-                    page.compiled = page.compiled.replace(page.data.swap[replace].key, page.data.swap[replace].value)
-                }
                 
-                //Now let's launch to spooky and use all that angular.
+                //We'll leave the raw string as the base template for now.
+                page.compiled = compiledString
+                
+                //Now let's save it.
                 page.save(function(err, pg){ return callback(pg); })
             }
         })
     },
 
-    writePage: function (name, src, callback){
+    writePage: function (url, src, callback){
         htmlfile = fs.createWriteStream(src)
-        module.exports.getPage(name, function(page){
+        module.exports.getPage(url, function(page){
             htmlfile.write(page.complied)
         })
     }
+    
+    
+    
+    //
+    // Template management.
+    //
+    //
+    
+    
+    
+    
     
 }

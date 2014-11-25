@@ -47,7 +47,7 @@ module.exports = {
         }
         
         console.log("Tried adding dir link: " + __dirname + "/../aro_quiver/" + local);
-        app.use("/" + local, express.static(__dirname + "/../aro_quiver/" + local));
+        app.use("/" + url, express.static(__dirname + "/../aro_quiver/" + local));
 
     },
     
