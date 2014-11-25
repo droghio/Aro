@@ -85,15 +85,25 @@ module.exports = {
 
     
     updatePageRaw: function(url, htmlstring, callback){
-        page = getPage(url, function(page){
-            page.save(function(err, pg){
-                if (err){
-                    console.log("There was an error saving page: " + err)
-                }
+        console.log("Updating Page Raw.")
+        module.exports.getPage(url, function(page){
+            if (page){
 
-                if (callback)
-                    return callback(pg);
-            })
+                page.rawstring = htmlstring
+            
+                page.save(function(err, pg){
+                    if (err){
+                        console.log("There was an error saving page: " + err)
+                    }
+
+                    if (callback)
+                        return callback(pg);
+                })
+            }
+            
+            else
+                console.log("ERRROR updating rawstring for page: " + url + " to: " + htmlstring)
+            
         })
     },
 
@@ -120,7 +130,7 @@ module.exports = {
     },
     
     getAllPages: function (callback){
-        //TODO REMOVE THIS LIMIT!!!!!
+        //We'll want to add pagination.
         pageCollection.find(function(err, pages){
             if (err)
                 console.log("ERRRRORRR getting page: " + url)
@@ -133,6 +143,8 @@ module.exports = {
 
     compilePage: function (url, callback, compiledString){
         //Since I moved compilation to client this function is really been voided.
+        
+        console.log("Updating Compiled Page.")
     
         module.exports.getPage(url, function(page){
             if (page){
@@ -141,16 +153,31 @@ module.exports = {
                 page.compiled = compiledString
                 
                 //Now let's save it.
-                page.save(function(err, pg){ return callback(pg); })
+                page.save(function(err, pg){
+                    module.exports.writePage(url, __dirname + "/public/pages/" + url, callback)
+                })
             }
         })
     },
 
+
     writePage: function (url, src, callback){
+
+        console.log("Attempting to write file to: " + src)
         htmlfile = fs.createWriteStream(src)
         module.exports.getPage(url, function(page){
-            htmlfile.write(page.complied)
+            if (page){
+                htmlfile.write(page.compiled)
+                
+                if (callback)
+                    return callback(page)
+                
+            }
+            
+            else
+                console.log("ERRROR writing page: " + src)
         })
+        
     },
     
     
@@ -213,15 +240,15 @@ module.exports = {
 
             //Try deleting folder.
             try{
-                fs.rmdirSync(__dirname + "/public/resources")
+                //fs.rmdirSync(__dirname + "/public/resources")
             }
 
             catch(err){}
             
-            fs.copy(__dirname + "/templates/" + templatename + "/resources", __dirname + "/public/resources", function (err){
+            /*fs.copy(__dirname + "/templates/" + templatename + "/resources", __dirname + "/public/resources", function (err){
                 if (err)
                     console.log("ERRRROR LOADING TEMPLATE '" + templatename + "' here it is: " + err)
-            })
+            })*/
             
             server.addDir("compiler/public/resources", "resources")
             server.addDir("compiler/public/pages", "")

@@ -33,10 +33,18 @@ module.exports = {
             })
             
             socket.on("compiler-upload-page", function (page){
+            
+                //First upload the compilation.
                 plugins.compiler.compilePage(page.url,
                     function(data){
-                        socket.emit("compiler-upload-page-response", data)
-                    }, page.compiledString);
+                        //Now the raw string.
+                        plugins.compiler.updatePageRaw(
+                            page.url,
+                            page.rawstring,
+                            function(data){
+                                socket.emit("compiler-upload-page-response", data)
+                        });
+                }, page.compiledString);
             })
             
         })

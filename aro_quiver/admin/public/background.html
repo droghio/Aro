@@ -34,8 +34,8 @@
             <aside class="actions">
                 <ul>
                     <li style="background-image: url('icons/pages/refresh.png')"></li>
-                    <li style="background-image: url('icons/pages/upload.png')"></li>
-                    <li style="background-image: url('icons/pages/delete.png')"></li>
+                    <li style="background-image: url('icons/pages/upload.png')" onclick="view.upload()"></li>
+                    <li style="background-image: url('icons/pages/delete.png')" onclick="view.loadData()"></li>
                 </ul>
             </aside>
 
@@ -44,7 +44,7 @@
 
 
         <main class="hide">
-            <iframe src="/pages/index.html" class="hidden"></iframe>
+            <iframe class="hidden"></iframe>
         </main> <!-- Rendered view of webpage goes in here. iFrame? -->
 
         <div class="modal hide">
@@ -52,28 +52,6 @@
                 <input type="text" id="replaceText" />
             </form>
         </div>
-
-        <script>
-
-            //Load iframe, adjust size.
-
-            $("iframe").load(function () {
-
-                $("iframe").contents().find("*").click(function (e) {
-                    replacer.startReplace(e.target);
-                    e.preventDefault()
-                })
-
-                //Guestimate wait to animiate until jQuery is done to help smooth out animation.
-                setTimeout(function(){
-                    $("iframe").height($("iframe").contents().height());
-                    $("main").removeClass("hide")
-                    $("iframe").removeClass("hidden")
-                }, 500)
-
-            })
-
-        </script>
 
     </body>
 
