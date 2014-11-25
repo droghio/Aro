@@ -43,8 +43,10 @@ module.exports = {
             })
         })
         
+        module.exports.loadTemplates();
+        
         // Serve our actual site.
-        server.addDir("compiler/templates/sample-template", "pages")
+        //server.addDir("compiler/templates/sample-template", "pages")
         
     },
 
@@ -149,7 +151,7 @@ module.exports = {
         module.exports.getPage(url, function(page){
             htmlfile.write(page.complied)
         })
-    }
+    },
     
     
     
@@ -157,6 +159,79 @@ module.exports = {
     // Template management.
     //
     //
+    
+    templates: {},
+    
+    loadTemplates: function(){
+    
+        fs.readdir(__dirname + "/templates", function(err, ls){
+        
+            console.log("\nLoading templates.")
+            
+            for (var dir in ls){
+                dir = ls[dir]
+                //Make sure we are only checking folders.
+                //TODO make more secure.
+                //What if the file doesn't have a period in its extension.
+                if (dir.indexOf(".") == -1){
+                    if (module.exports.templates[dir]){
+                        console.log("Two templates tried to load the same name, should be impossible, skipping.")
+                        continue;
+                    }
+                    
+                    files = fs.readdirSync(__dirname + "/templates/" + dir)
+                    console.log("Found template: " + dir);
+               
+                    //Scan for individual files.
+                    module.exports.templates[dir] = [];
+                
+                    for (var file in files){
+                        file = files[file]
+                        
+                        //Make sure we are only grabbing html files.
+                        //TODO make more secure.
+                        //Also watch out for files that begin with .html asdlkajsdlkja
+
+                        if (file.indexOf(".html") != -1){
+                            module.exports.templates[dir].push(file)
+                            console.log("  Found html file: " + dir + "/" + file)
+                        }
+
+                    }
+                }
+            }
+            
+            console.log(module.exports.templates)
+            module.exports.loadTemplate("sample-template", function(){})
+            
+        })
+    },
+    
+    loadTemplate: function (templatename, callback){
+        if (module.exports.templates[templatename]){
+            console.log("Loading template: " + templatename);
+
+            //Try deleting folder.
+            try{
+                fs.rmdirSync(__dirname + "/public/resources")
+            }
+
+            catch(err){}
+            
+            fs.copy(__dirname + "/templates/" + templatename + "/resources", __dirname + "/public/resources", function (err){
+                if (err)
+                    console.log("ERRRROR LOADING TEMPLATE '" + templatename + "' here it is: " + err)
+            })
+            
+            server.addDir("compiler/public/resources", "resources")
+            server.addDir("compiler/public/pages", "")
+            
+        }
+        
+        else {
+            console.log("ERRRRRRRROR Attempted to load template that doesn't exist: " + templatename)
+        }
+    }
     
     
     

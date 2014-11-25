@@ -8,7 +8,7 @@
 //Will create build ui on first run
 //For now we test.
 
-fs = require("fs")
+fs = require("node-fs-extra")
 server = require("./src/server.js")
 server.start()
 
