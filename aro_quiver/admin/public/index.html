@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -9,14 +9,12 @@
     <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
     <script src="/socket.io/socket.io.js"></script>
 
-    <script src="clientadmin.js"></script>
-
     <link rel="stylesheet" href="shepherd-theme-arrows.css" />
 	<script src="shepherd.min.js"></script>
 
 </head>
 <body>
-    <header>
+    <header style="z-index: -1;">
         <aside id="toolbar" class="fakeHover">
             <nav>
                 <ul>
@@ -43,7 +41,7 @@
     <main style="text-align: center; position: relative; margin-top: 10vw;">
     		<h1 style="font-family: Genosans; font-size: 5em;">Welcome</h1>
 
-            <a class="homeButton" onclick="window.location.assign('background.html');">Get Started Editing</a><br><br>
+            <a class="homeButton" onclick="window.location.assign('background.html?page=index.html');">Get Started Editing</a><br><br>
             
             <a class="homeButton" onclick="tour.start();">Take a Tour</a>
      </main>
