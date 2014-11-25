@@ -21,7 +21,7 @@
                 <nav>
                     <ul>
                         <li style="background-image: url('icons/sidebar/edit.png')"></li>
-                        <li style="background-image: url('icons/sidebar/home.png')"></li>
+                        <li style="background-image: url('icons/sidebar/home.png')" onclick="window.location='index.html'"></li>
                         <li style="background-image: url('icons/sidebar/pages.png')"></li>
                         <li style="background-image: url('icons/sidebar/add.png')"></li>
                         <li style="background-image: url('icons/sidebar/media.png')"></li>
@@ -35,12 +35,14 @@
 
             <aside class="actions">
                 <ul>
-                    <li style="background-image: url('icons/pages/refresh.png')" onclick="view.loadData()"></li>
+                    <li id="refresh" style="background-image: url('icons/pages/refresh.png'); transition: none;" onclick="view.loadData()"></li>
                     <li style="background-image: url('icons/pages/upload.png')" onclick="view.upload()"></li>
                     <li style="background-image: url('icons/pages/launch.png')" onclick="window.open('/' + editingpage)"></li>
                 </ul>
             </aside>
 
+            <div id="checkmark"></div>
+                
             <aside id="logo"><a>a</a>ro</aside>
         </header>
 

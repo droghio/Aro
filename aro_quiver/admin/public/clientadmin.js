@@ -29,6 +29,13 @@ socket.on('news', function (data) {
 });
 
 socket.on("compiler-upload-page-response", function (page){
+
+    $("#refresh").addClass("rotate")
+    setTimeout(function (){ $("#refresh").removeClass("rotate") }, 5000)
+    
+    $("#checkmark").addClass("appear")
+    setTimeout(function (){ $("#checkmark").removeClass("appear") }, 5000)
+    
     console.log(page)
 })
 
