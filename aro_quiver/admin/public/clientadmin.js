@@ -46,28 +46,40 @@ socket.on("compiler-new-page-response", function (page){
 socket.on("compiler-get-page-response", function (page){
 
     originalpage = page
-
-    $("iframe#editor").attr("srcdoc", page.rawstring)
-
-    $("iframe#editor").load(function () {
     
-        $("iframe#editor").contents().find("*").click(function (e) {
-            replacer.startReplace(e.target);
-            e.preventDefault()
-        })
+    if (page){
 
-        //Guestimate wait to animiate until jQuery is done to help smooth out animation.
-        setTimeout(function(){
-            $("iframe#editor").height($("iframe#editor").contents().height());
-            $("main").removeClass("hide")
-            $("iframe#editor").removeClass("hidden")
-        }, 500)
+        $("iframe#editor").attr("srcdoc", page.rawstring)
+
+        $("iframe#editor").load(function () {
         
-    })
+            $("iframe#editor").contents().find("*").click(function (e) {
+                replacer.startReplace(e.target);
+                e.preventDefault()
+            })
+
+            //Guestimate wait to animiate until jQuery is done to help smooth out animation.
+            setTimeout(function(){
+                $("iframe#editor").height($("iframe#editor").contents().height());
+                $("main").removeClass("hide")
+                $("iframe#editor").removeClass("hidden")
+            }, 500)
+            
+        })
+    
+    }
 })
 
 socket.on("compiler-get-pages-response", function (pages){
     console.log(pages)
+})
+
+socket.on("compiler-get-templates-response", function(pages){
+    console.log(pages)
+})
+
+socket.on("compiler-get-template-response", function (data){
+    console.log(data)
 })
 
 

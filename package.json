@@ -4,7 +4,8 @@
   "description": "Nodejs CMS",
   "main": "index.js",
   "scripts": {
-    "test": "node notch.js"
+    "test": "node notch.js",
+    "start": "node notch.js"
   },
   "repository": {
     "type": "git",

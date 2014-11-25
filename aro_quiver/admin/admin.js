@@ -29,6 +29,7 @@ module.exports = {
             })
             
             socket.on("compiler-new-page", function (page){
+                socket.emit("compiler-new-page-response", page)
                 plugins.compiler.newPage(page.url, page.rawstring, function (data){})
             })
             
@@ -47,6 +48,19 @@ module.exports = {
                 }, page.compiledString);
             })
             
+            socket.on("compiler-get-templates", function (){
+                socket.emit("compiler-get-templates-response", plugins.compiler.templates)
+            })
+            
+            socket.on("compiler-get-template", function (template){
+                plugins.compiler.readTemplate(template.name, function (err, data){
+                    if (err)
+                        console.log("ERRROR loading template: " + err)
+
+                    socket.emit("compiler-get-template-response", data)
+                })
+            })
+
         })
     },
     

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta charset="utf-8" />
+        <title>Aro Editor</title>
+
+        <link href="main.css" rel="stylesheet" />
+        <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+        <script src="/socket.io/socket.io.js"></script>
+
+        <script src="//tinymce.cachefly.net/4.0/tinymce.min.js"></script>
+
+        <script src="clientadmin.js"></script>
+        <script src="add.js"></script>
+        
+        <style>
+            main{
+                max-height: 1000px;
+                overflow: hidden;
+                height: calc( 70vh - 40px );
+                width: calc( 80vw - 40px );
+                background: none repeat scroll 0% 0% #FFF;
+                margin: 15vh 10vw 0px;
+                padding: 20px;
+                position: relative;
+            }
+        
+            #pagename{
+                font-size: 1.5em;
+                font-family: Genosans;
+                border: none;
+            }
+        
+            table{
+                margin-left: 15px;
+                width: 300px;
+            }
+        
+            th{
+                float: left;
+            }
+        
+            td{
+                padding-left: 15px;
+                transition: all 1s;
+                cursor: pointer;
+            }
+        
+            #submit{
+                background: url("icons/pages/done.png"), #2f307c;
+                border: none;
+                height: 50px;
+                width: 50px;
+                background-size: cover;
+                position: absolute;
+                right: 10px;
+                bottom: 10px;
+                transition: all 1s;
+                cursor: pointer;
+            }
+        
+            #submit:hover{
+                opacity: .5;
+            }
+        
+        </style>
+
+    </head>
+
+    <body>
+        <header>
+            <aside id="toolbar">
+                <nav>
+                    <ul>
+                        <li style="background-image: url('icons/sidebar/pages.png')"></li>
+                        <li style="background-image: url('icons/sidebar/edit.png')" onclick="window.location='edit.html'"></li>
+                        <li style="background-image: url('icons/sidebar/home.png')" onclick="window.location='index.html'"></li>
+                        <li style="background-image: url('icons/sidebar/add.png')"></li>
+                        <li style="background-image: url('icons/sidebar/media.png')"></li>
+                        <li style="background-image: url('icons/sidebar/permissions.png')"></li>
+                        <li style="background-image: url('icons/sidebar/users.png')"></li>
+                        <li style="background-image: url('icons/sidebar/settings.png')"></li>
+                        <li style="background-image: url('icons/sidebar/help.png')"></li>
+                    </ul>
+                </nav>
+            </aside>
+                
+            <aside id="logo"><a>a</a>ro</aside>
+        </header>
+
+
+        <main>
+            <h1>Add Page</h1>
+            <form action="javascript:loadEditor()">
+                <input id="pagename" type="text" placeholder="Change name" />
+                <br />
+                <br />
+
+                <h3>Choose template</h2>
+                <table>
+                    <tbody>
+                    </tbody>
+                </table>
+
+                <input id="submit" type="submit" value="" />
+
+            </form>
+        </main>
+
+    </body>
+
+</html>

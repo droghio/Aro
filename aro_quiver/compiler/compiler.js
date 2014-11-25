@@ -258,6 +258,19 @@ module.exports = {
         else {
             console.log("ERRRRRRRROR Attempted to load template that doesn't exist: " + templatename)
         }
+    },
+    
+    readTemplate: function (templatename, callback){
+        //Includes filename too.
+        //Yes this is horribly insecure......
+        if (templatename.indexOf("..") == -1 && templatename[0] != "/"){
+            fs.readFile(__dirname + "/templates/" + templatename, { encoding: "utf8" }, callback)
+        }
+        
+        else{
+            console.log("Tried to read invalid template address: " + templatename)
+        }
+        
     }
     
     
