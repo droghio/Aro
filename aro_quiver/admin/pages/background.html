@@ -7,7 +7,7 @@
 
         <link href="../main.css" rel="stylesheet" />
         <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
-        <script src="index.js"></script>
+        <script src="clientadmin.js"></script>
 
     </head>
 
@@ -33,15 +33,29 @@
         </header>
 
 
-        <main>
-            <iframe src="sample-template/index.html"></iframe>
+        <main class="hide">
+            <iframe src="sample-template/index.html" class="hidden"></iframe>
         </main> <!-- Rendered view of webpage goes in here. iFrame? -->
 
         <script>
 
             //Load iframe, adjust size.
 
-            $("iframe").width($("iframe").scrollWidth())
+            $("iframe").load(function () {
+
+                $("iframe").contents().find("*").click(function (e) {
+                    console.log(e)
+                    e.preventDefault()
+                })
+
+                //Guestimate wait to animiate until jQuery is done to help smooth out animation.
+                setTimeout(function(){
+                    $("iframe").height($("iframe").contents().height());
+                    $("main").removeClass("hide")
+                    $("iframe").removeClass("hidden")
+                }, 500)
+
+            })
 
         </script>
 

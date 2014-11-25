@@ -9,10 +9,12 @@ body{
     background-attachment: fixed;
     font-family: Genosans;
     margin: 0px;
+    padding: 0px;
 }
 
 header{
     overflow: auto;
+    top: 0px;
 }
 
 aside{
@@ -35,6 +37,11 @@ aside:hover{
     --Header And Logo --
 */
 
+body > header{
+    position: fixed;
+    width: 100vw;
+}
+
 nav{
     background-color: rgba(47, 48, 124, 0.86);
     height: calc( 100vh - 10px );
@@ -55,6 +62,7 @@ nav > ul > li{
     list-style: none;
     margin: 15px 0px;
     transition: all .5s;
+    cursor: pointer;
 }
 
 nav > ul > li:hover{
@@ -79,13 +87,25 @@ nav > ul > li:hover{
     --iFrame--
 */
 
+.hide{
+    max-height: 0px;
+}
+
+main{
+    max-height: 1000px;
+    overflow: hidden;
+}
+
 iframe{
-    margin: 0px 10%;
-    position: absolute;
-    bottom: 0px;
-    height: calc( 100% - 80px );
+    margin: 100px 10% -5px;
+    padding: 0px;
+    min-height: calc( 100vh - 100px );
     width: 80%;
     border: none;
     background: #FFF;
-    overflow: scroll;
+    transition: all 1s;
+}
+
+.hidden{
+    transform: translateY(100vh)
 }
