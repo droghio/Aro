@@ -56,3 +56,11 @@ var replacer = {
         $(replacer.lastSender).text($("#replaceText").val())
     }
 }
+
+var socket = io.connect(window.location.protocol + "//" + window.location.host);
+socket.emit('admin-login', { my: 'data' });
+
+socket.on('news', function (data) {
+    console.log(data);
+    socket.emit('my other event', { my: 'data' });
+});

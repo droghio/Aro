@@ -24,6 +24,9 @@
   "dependencies": {
     "mongoose": "^3.8.17",
     "sandbox": "^0.8.6",
-    "express": "^4.9.5"
+    "express": "^4.9.5",
+    "directory": "^0.1.0",
+    "serve-index": "^1.5.1",
+    "socket.io": "^1.2.1"
   }
 }

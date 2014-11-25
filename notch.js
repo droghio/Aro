@@ -10,6 +10,7 @@
 
 fs = require("fs")
 server = require("./src/server.js")
+server.start()
 
 db = require("./src/db.js")
 db.open(letsGo)
@@ -49,9 +50,8 @@ function letsGo(){
             }
         }
     })
+    
 }
-
-
 
 //Remember js is async, use callbacks to chain tests.
 function test(){
