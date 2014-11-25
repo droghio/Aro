@@ -40,20 +40,20 @@ socket.on("compiler-get-page-response", function (page){
 
     originalpage = page
 
-    $("iframe").attr("srcdoc", page.rawstring)
+    $("iframe#editor").attr("srcdoc", page.rawstring)
 
-    $("iframe").load(function () {
+    $("iframe#editor").load(function () {
     
-        $("iframe").contents().find("*").click(function (e) {
+        $("iframe#editor").contents().find("*").click(function (e) {
             replacer.startReplace(e.target);
             e.preventDefault()
         })
 
         //Guestimate wait to animiate until jQuery is done to help smooth out animation.
         setTimeout(function(){
-            $("iframe").height($("iframe").contents().height());
+            $("iframe#editor").height($("iframe#editor").contents().height());
             $("main").removeClass("hide")
-            $("iframe").removeClass("hidden")
+            $("iframe#editor").removeClass("hidden")
         }, 500)
         
     })
@@ -79,11 +79,11 @@ var view = {
             url: editingpage,
             compiledString:
                 "<!DOCTYPE html>\n<html>\n" +
-                $("iframe").contents().find("html").html() +
+                $("iframe#editor").contents().find("html").html() +
                 "\n</html>",
             rawstring:
                 "<!DOCTYPE html>\n<html>\n" +
-                $("iframe").contents().find("html").html() +
+                $("iframe#editor").contents().find("html").html() +
                 "\n</html>"
         })
     },
@@ -103,20 +103,50 @@ var replacer = {
 
     startReplace: function (sender) {
 
+        $(".modal").removeClass("hide");
+        $("#replaceText").focus()
+
+        replacer.lastSender = sender
+
         //Quick hack to see if this is a text node.
         if ($(sender).text() == $(sender).html()) {
-
-            $(".modal").removeClass("hide");
-            $("#replaceText").focus()
-
-            replacer.lastSender = sender
+            $("#replaceTextLong").css("display", "none");
+            $("#replaceText").css("display", "block");
             $("#replaceText").val($(sender).text())
         }
+
+        else {
+            $("#replaceTextLong").val($(sender).text())
+            $("#replaceTextLong").css("display", "block");
+            $("#replaceText").css("display", "none");
+
+            tinymce.init({
+                width: 300,
+                height: 300,
+                menubar: false,
+                selector: "textarea"
+            });
+
+            $("#replaceTextLong").css("display", "none");
+
+        }
+
     },
 
     finishReplace: function () {
         $(".modal").addClass("hide");
-        $(replacer.lastSender).text($("#replaceText").val())
+
+        if ($("#replaceText").val())
+            $(replacer.lastSender).text($("#replaceText").val())
+
+        else {
+            $(replacer.lastSender).html($("#replaceTextLong").val())
+            tinyMCE.remove()
+        }
+
+        $("#replaceText").val("")
+        $("#replaceTextLong").val("")
+
     }
 }
 
