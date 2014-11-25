@@ -1,6 +1,6 @@
 ﻿@font-face{
     font-family: Genosans;
-    src: url("../fonts/GeosansLight.ttf");
+    src: url("../fonts/GeosansLight.ttf"), url("./fonts/GeosansLight.ttf");
 }
 
 body{

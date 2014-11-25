@@ -49,6 +49,8 @@ var replacer = {
             replacer.lastSender = sender
             $("#replaceText").val($(sender).text())
         }
+
+
     },
 
     finishReplace: function () {
