@@ -9,7 +9,6 @@
         <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
         <script src="/socket.io/socket.io.js"></script>
 
-        <!-- Place inside the <head> of your HTML -->
         <script src="//tinymce.cachefly.net/4.0/tinymce.min.js"></script>
 
         <script src="clientadmin.js"></script>
@@ -54,6 +53,10 @@
             <form action="javascript:replacer.finishReplace()">
                 <input type="text" id="replaceText" />
                 <textarea id="replaceTextLong"></textarea>
+                <div class="editorbuttoncontainer">
+                    <input id="replaceButtonLong" type="submit" value="Update"/>
+                    <input id="replaceButton" onclick="replacer.switchEditor()" type="button" value="Switch Editor" />
+                </div>
             </form>
         </div>
 

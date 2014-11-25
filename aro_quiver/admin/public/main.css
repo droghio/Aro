@@ -170,7 +170,7 @@ iframe#editor{
     height: 50px;
     width: 30vw;
     margin-top: calc( 30% - 25px );
-    margin-left: 35vw;
+    margin-left: calc( 35vw - 30px );
     border-radius: 25px;
     font-size: 30px;
     border: 1px solid #DDD;
@@ -205,9 +205,24 @@ iframe#editor{
 
 
 /*
-    --Long Editor--
+    --Editor--
 */
 
 form > .mce-container{
-    margin: 50px auto !important;
+    margin: 150px auto 0px !important;
+}
+
+.editorbuttoncontainer{
+    width: 100vw;
+}
+
+.editorbuttoncontainer > input{
+    height: 50px;
+    margin: 10px auto;
+    width: 200px;
+    color: white;
+    background: none;
+    border: none;
+    font-family: Genosans;
+    font-size: 1.2em;
 }

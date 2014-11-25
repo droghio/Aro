@@ -111,11 +111,15 @@ var replacer = {
         //Quick hack to see if this is a text node.
         if ($(sender).text() == $(sender).html()) {
             $("#replaceTextLong").css("display", "none");
+            $("#replaceButtonLong").css("display", "none");
+            $("#replaceButton").css("display", "block");
             $("#replaceText").css("display", "block");
             $("#replaceText").val($(sender).text())
         }
 
         else {
+            $("#replaceButtonLong").css("display", "block");
+            $("#replaceButton").css("display", "none");
             $("#replaceTextLong").val($(sender).text())
             $("#replaceTextLong").css("display", "block");
             $("#replaceText").css("display", "none");
@@ -135,18 +139,51 @@ var replacer = {
 
     finishReplace: function () {
         $(".modal").addClass("hide");
+        
 
-        if ($("#replaceText").val())
+        if ($("#replaceText").val()){
+            $("#replaceTextLong").css("display", "none");
             $(replacer.lastSender).text($("#replaceText").val())
+        }
 
         else {
+            $("#replaceText").css("display", "none");
             $(replacer.lastSender).html($("#replaceTextLong").val())
-            tinyMCE.remove()
+            setTimeout(function(){
+                tinyMCE.remove()
+                $("#replaceTextLong").css("display", "none");
+            }, 1000);
         }
 
         $("#replaceText").val("")
         $("#replaceTextLong").val("")
 
+    },
+    
+    switchEditor: function (){
+        $("#replaceTextLong").val($("#replaceText").val())
+        $("#replaceText").val("")
+        $(".modal").addClass("hide");
+
+        setTimeout(function (){
+        
+            $("#replaceText").css("display", "none");
+            $(".modal").removeClass("hide");
+            $("#replaceButtonLong").css("display", "block");
+            $("#replaceButton").css("display", "none");
+            $("#replaceTextLong").css("display", "block");
+
+            tinymce.init({
+                width: 300,
+                height: 300,
+                menubar: false,
+                selector: "textarea"
+            });
+            
+            $("#replaceTextLong").css("display", "none");
+
+        }, 1000)
+        
     }
 }
 
