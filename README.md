@@ -57,5 +57,5 @@ ADv - Quick access to variables via sidebar.
 
 To make this work, send all db data to client. !!!!!SUPER INSECURE!!!!!!
 
-From there have client render and let user mess around. When work is done have client send updates to compiler. I would love to have client render all content locally and push changes to server, but this might be insanely insecure even if we are basically doing it anyway.
+From there have client render and let user mess around. When work is done have client send updates to compiler. I would love to have client render all content locally and push changes to server, but this might be insanely insecure even if we are basically doing it anyway. 
 
