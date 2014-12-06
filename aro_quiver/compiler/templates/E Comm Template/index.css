@@ -1,0 +1,43 @@
+/*
+
+    Aro
+
+*/
+
+@font-face {
+    font-family: "GeosansLight";
+    src: url('geo_sans_light/GeosansLight.ttf');
+}
+
+
+html, body{
+    font-family: "GeosansLight";
+    margin: 0px;
+    color: white;
+}
+
+
+header{
+    width: 100%;
+    height: 50px;
+    text-align: right;
+}
+
+main{
+    height: 1000px;
+}
+
+aside{
+    height: inherit;
+    width: 5%;
+    float: left;
+    background: #BBB;
+}
+
+section{
+    width: 95%;
+    height: inherit;
+    float: left;
+    background-color: #010799;
+    
+}
